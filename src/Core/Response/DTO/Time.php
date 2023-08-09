@@ -134,12 +134,14 @@ class Time
      */
     public static function initFromResponse(array $response): self
     {
+        $operating = isset($response['operating']) ? $response['operating'] : 0;
+
         return new self(
             (float)$response['start'],
             (float)$response['finish'],
             (float)$response['duration'],
             (float)$response['processing'],
-            (float)$response['operating'],
+            (float)$operating,
             new DateTimeImmutable($response['date_start']),
             new DateTimeImmutable($response['date_finish']),
             $response['operating_reset_at'] ?? null
